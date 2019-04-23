@@ -82,4 +82,4 @@ main = run [consoleReporter] do
 
     it "powX2b 2 of 0.5 * n^2 + n + 2 equals 6" do
       let res = powX2b 2
-      ceil res `shouldEqual` 6
+      res `shouldEqual` 6.0
