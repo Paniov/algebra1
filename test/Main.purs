@@ -7,7 +7,8 @@ import Test.Spec (describe, it)
 import Test.Spec.Assertions (shouldEqual)
 import Test.Spec.Reporter.Console (consoleReporter)
 import Test.Spec.Runner (run)
-import Data.Int (pow)
+import Data.Int (pow, toNumber, ceil)
+import Data.Decimal (fromInt)
 
 pow2 :: Int -> Int
 pow2 n = pow n 2
@@ -33,7 +34,10 @@ powX2 :: Int -> Int
 powX2 x = 4 * (pow2 x) + (32 * x) + 64
 
 powX2a :: Int -> Int
-powX2a x = 4 * (pow2 x) + (32 * x) + 64
+powX2a x = (pow2 x) + (8 * x) + 16
+
+powX2b :: Int -> Number
+powX2b x = 0.5 * (toNumber (pow2 x)) + (toNumber x) + (toNumber 2)
 
 main :: Effect Unit
 main = run [consoleReporter] do
@@ -54,7 +58,7 @@ main = run [consoleReporter] do
       let res = ex1 4
       res `shouldEqual` -20
 
-    it "xPlusY 5 of 20x + 10x equals 150" do
+    it "xPlusY 5 of 20n + 10n equals 150" do
       let res = xPlusY 5
       res `shouldEqual` 150
 
@@ -62,6 +66,20 @@ main = run [consoleReporter] do
       let res = gg 6 7
       res `shouldEqual` 98
 
-    it "powX2 2 of 4x^2 + 32n + 64 equals 144" do
+    it "powX2 2 of 4n^2 + 32n + 64 equals 144" do
       let res = powX2 2
       res `shouldEqual` 144
+
+    it "powX2a 2 of n^2 + 8n + 16 equals 36" do
+      let res = powX2a 2
+      res `shouldEqual` 36
+
+    it "result of powX2 is less than powX2a in 4 times" do
+      let resX = powX2 2
+      let resY = powX2a 2
+      let res = resX / resY
+      res `shouldEqual` 4
+
+    it "powX2b 2 of 0.5 * n^2 + n + 2 equals 6" do
+      let res = powX2b 2
+      ceil res `shouldEqual` 6
