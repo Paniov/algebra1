@@ -2,7 +2,6 @@ module Test.Main where
 
 import Prelude
 import Effect (Effect)
-import Test.Spec (describe, it)
 import Test.Spec.Discovery (discover)
 import Test.Spec.Runner (run)
 import Test.Spec.Reporter.Console (consoleReporter)
