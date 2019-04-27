@@ -7,44 +7,23 @@ import Test.Spec (describe, it)
 import Test.Spec.Assertions (shouldEqual)
 import Test.Spec.Reporter.Console (consoleReporter)
 import Test.Spec.Runner (run)
-import Data.Int (pow, toNumber, ceil)
-import Data.Decimal (fromInt)
+import Data.Int (pow)
 
+--general functions
 pow2 :: Int -> Int
 pow2 n = pow n 2
 
-ex1 :: Int -> Int
-ex1 n = -6 * (pow2 n) + (25 * n) - 24
-
-ex1a :: Int -> Int
-ex1a n = -1 * ((pow2 n) - 25 + 144)
-
-negate :: Int -> Int
-negate = (-) 0
-
--- 20x + 10x
 xPlusY :: Int -> Int
 xPlusY x =  (20 * x) + (10 * x)
 
--- 5x - 16y + 30x
-gg :: Int -> Int -> Int
-gg x y = (5 * x) - (16 * y) + (30 * x)
-
-test3a :: Int -> Int
-test3a n = 4 * (pow2 n) + (32 * n) + 64
-
-test3b :: Int -> Int
-test3b n = 4 * ((pow2 n) + (8 * n) + 16)
-
-test3c :: Int -> Int
-test3c n = ((n + 4) * (n + 4)) * 4
-
+--Test 1
 test1a :: Int -> Int
 test1a v = 16 * (pow2 v) - (24 * v) + 9
 
 test1b :: Int -> Int
 test1b v = ((4 * v) - 3) * ((4 * v) - 3)
 
+--Test 2
 test2a :: Int -> Int
 test2a a = 50 * (pow2 a) - 2
 
@@ -54,18 +33,38 @@ test2b a = 2 * (25 * (pow2 a) - 1)
 test2c :: Int -> Int
 test2c a = 2 * ((5 * a - 1) * (5 * a + 1))
 
+--Test 3
+test3a :: Int -> Int
+test3a n = 4 * (pow2 n) + (32 * n) + 64
+
+test3b :: Int -> Int
+test3b n = 4 * ((pow2 n) + (8 * n) + 16)
+
+test3c :: Int -> Int
+test3c n = ((n + 4) * (n + 4)) * 4
+
+--Test 4
 test4a :: Int -> Int
 test4a r = 9 * (pow2 r) - 16
 
 test4b :: Int -> Int
 test4b r = (3 * r - 4) * (3 * r + 4)
 
+--Test 5
 test5a :: Int -> Int
 test5a x = 4 * (pow2 x) - 36
 
 test5b :: Int -> Int
 test5b x = (2 * x - 6) * (2 * x + 6)
 
+--Test 6
+test6 :: Int -> Int
+test6 n = -6 * (pow2 n) + (25 * n) - 24
+
+test6a :: Int -> Int
+test6a n = -1 * ((pow2 n) - 25 + 144)
+
+--Test 7
 test7a :: Int -> Int
 test7a b = 60 * (pow2 b) - (6 * b) - 54
 
@@ -75,6 +74,7 @@ test7b b = 6 * (10 * (pow2 b) - (1 * b) - 9)
 test7c :: Int -> Int
 test7c b = 6 * ((10 * b + 9) * (b - 1))
 
+--Test 8
 test8a :: Int -> Int
 test8a k = 9 * (pow2 k) + (43 * k) - 10
 
@@ -84,6 +84,7 @@ test8b k = (pow2 k) + (43 * k) - 90
 test8c :: Int -> Int
 test8c k = (k + 5) * (9 * k - 2)
 
+--Test 9
 test9a :: Int -> Int
 test9a a = -45 * (pow2 a) - (190 * a) + 175
 
@@ -93,6 +94,7 @@ test9b a = -5 * (9 * (pow2 a) + (38 * a) -35)
 test9c :: Int -> Int
 test9c a = -5 * ((a + 5) * (9 * a - 7))
 
+--Test 10
 test10a :: Int -> Int
 test10a n = 24 * (pow2 n) + (150 * n) + 36
 
@@ -115,37 +117,10 @@ main = run [consoleReporter] do
         let res = negate 1
         res `shouldEqual` -1
 
-    describe "test6: -6n^2+25n-24" do  
-      it "-6n^2+25n-24 equals -20" do
-        let actual = ex1 4
-        let expected = -20
-        actual `shouldEqual` expected
-
-      it "-((pow2 n) - 25 + 144) equals -20" do
-        let res = ex1 4
-        res `shouldEqual` -20
-
     describe "general functions part 2" do
       it "xPlusY 5 of 20n + 10n equals 150" do
         let res = xPlusY 5
         res `shouldEqual` 150
-
-      it "gg 6 7 of 5x - 16y + 30y equals 98" do
-        let res = gg 6 7
-        res `shouldEqual` 98
-
-    describe "test3: 4n^2 + 32n + 64" do
-      it "test3a 2 of 4n^2 + 32n + 64 equals 144" do
-        let res = test3a 2
-        res `shouldEqual` 144
-      
-      it "test3b 2 of 4 * (n^2 + 8n + 16) equals 144" do
-        let res = test3b 2
-        res `shouldEqual` 144
-
-      it "test3c 2 of 4*(n + 4)^2 equals 144" do
-        let res = test3c 2
-        res `shouldEqual` 144
 
     describe "test1: 16v^2 - 24v + 9" do
       it "test1a 2 of 16v^2 - 24v + 9 equals 25" do
@@ -168,6 +143,19 @@ main = run [consoleReporter] do
         let res = test2c 2
         res `shouldEqual` 198
 
+    describe "test3: 4n^2 + 32n + 64" do
+      it "test3a 2 of 4n^2 + 32n + 64 equals 144" do
+        let res = test3a 2
+        res `shouldEqual` 144
+      
+      it "test3b 2 of 4 * (n^2 + 8n + 16) equals 144" do
+        let res = test3b 2
+        res `shouldEqual` 144
+
+      it "test3c 2 of 4*(n + 4)^2 equals 144" do
+        let res = test3c 2
+        res `shouldEqual` 144
+
     describe "test4: 9r^2 - 16" do
       it "test4a 2 of 9r^2 - 16 equal 20" do
         let res = test4a 2
@@ -184,6 +172,16 @@ main = run [consoleReporter] do
 
       it "test5b 2 of (2x - 6)(2x + 6) equal -20" do
         let res = test5b 2
+        res `shouldEqual` -20
+
+    describe "test6: -6n^2+25n-24" do  
+      it "-6n^2+25n-24 equals -20" do
+        let actual = test6 4
+        let expected = -20
+        actual `shouldEqual` expected
+
+      it "-((pow2 n) - 25 + 144) equals -20" do
+        let res = test6 4
         res `shouldEqual` -20
 
     describe "test7: 60b^2 - 6b - 54" do
