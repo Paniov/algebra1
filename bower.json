@@ -1,0 +1,25 @@
+{
+  "name": "algebra1",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "output"
+  ],
+  "dependencies": {
+    "purescript-prelude": "^4.1.1",
+    "purescript-console": "^4.2.0",
+    "purescript-effect": "^2.0.1",
+    "purescript-lists": "^5.4.0",
+    "purescript-assert": "^4.1.0",
+    "purescript-aff": "^5.1.1",
+    "purescript-control": "^4.1.0",
+    "purescript-integers": "^4.0.0",
+    "purescript-decimals": "^4.0.0"
+  },
+  "devDependencies": {
+    "purescript-psci-support": "^4.0.0",
+    "purescript-spec": "^3.1.0",
+    "purescript-spec-discovery": "^3.1.0"
+  }
+}
